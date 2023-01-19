@@ -1,17 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
+import '../App.css';
 
-const SECURITY_CODE = "pollos";
 
 export function UseState() {
-    // estado compuesto
-    // const [ state, setState ] = React.useState({
-    //     value: "",
-    //     error: false,
-    //     loading: false,
-    //     rightValue: false,
-    // })
 
     // estado independiente
+    const [ SECURITY_CODE, setSECURITY_CODE ] = useState("");
+    const [ codeSaved, setCodeSaved ] = useState(false);
     const [ value, setValue ] = React.useState("");
     const [ error, setError ] = React.useState(false);
     const [ loading, setLoading ] = React.useState(false);
@@ -20,7 +15,6 @@ export function UseState() {
 
     const onConfirm = () => {
         setError(false);
-        // setRightValue(true);
         setConfirm(true)
     }
     const onError = () => {
@@ -31,10 +25,15 @@ export function UseState() {
         // setState({ ...state, value: e.target.value })
         setValue(codeValue);
     }
+    const handleCreateCode = (codeValue) => {
+        // setState({ ...state, value: e.target.value })
+        setSECURITY_CODE(codeValue);
+    }
     const handleReset = () => {
         setDeleted(false)
         setConfirm(false)
         setValue("")
+        setCodeSaved(false)
     }
 
     React.useEffect(() => {
@@ -48,20 +47,41 @@ export function UseState() {
                 setLoading(false);
             }, 3000);
         }
-    }, [ loading, value ]);
+    }, [ loading, value, SECURITY_CODE ]);
 
+    if (!codeSaved) {
+        return (
+            <div className="useState">
+                <h2>Create Code</h2>
+                <p>Create your security code please</p>
+                <input
+                    value={SECURITY_CODE}
+                    onChange={(e) => {
+                        handleCreateCode(e.target.value)
+                    }}
+                    placeholder='Security code'
+                />
+                <button
+                    onClick={() => {
+                        setCodeSaved(true)
+                    }}>
+                    Create
+                </button>
+            </div>
+        )
+    }
     if (!deleted && !confirm) {
         return (
-            <div>
+            <div className="useState">
                 <h2>Eliminate UseState</h2>
                 <p>Write down the security code please</p>
-                {/* {rightValue && <p>Right👏🏻 : Correct Code </p>} */}
                 {(error && !loading) && <p>Error❌: codigo incorrecto</p>}
                 {loading && <p>App is loading</p>}
                 <input
                     value={value}
                     onChange={(e) => {
                         handleCode(e.target.value)
+                        console.log(e.target.value)
                     }}
                     placeholder='Security code'
                 />
@@ -72,29 +92,32 @@ export function UseState() {
                     }}>
                     Check out
                 </button>
-
             </div>
         );
     } else if (!!confirm && !deleted) {
         return (
-            <React.Fragment>
-                <p>Please Confirm. Are you sure to remove your code?</p>
-                <button onClick={() => {
-                    setDeleted(true)
-                }}>delete</button>
+            <div className="useState">
+                <p>Please Confirm. <br />Are you sure to remove your code?</p>
+                <br />
+                <button
+                    onClick={() => {
+                        setDeleted(true)
+                        setSECURITY_CODE("")
+                    }}>delete</button>
                 <button
                     onClick={() => {
                         setConfirm(false)
+                        setValue("")
                     }}>go back</button>
-            </React.Fragment>
+            </div>
         );
     }
     else {
         return (
-            <React.Fragment>
+            <div className="useState">
                 <p>Code deleted successfully</p>
                 <button onClick={handleReset}>Reset</button>
-            </React.Fragment>
+            </div>
         );
     }
 }

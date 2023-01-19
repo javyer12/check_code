@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Loading from '../components/Loading';
+import '../App.css';
 
 const SECURITY_CODE = "pollos";
 
@@ -20,9 +21,9 @@ export class ClassState extends Component {
             setTimeout(() => {
                 console.log("make validation");
                 if (SECURITY_CODE === this.state.value) {
-                    this.setState({ error: false, loading: false, rightValue: true, value: " " })
+                    this.setState({ error: false, loading: false, rightValue: true, value: "" })
                 } else {
-                    this.setState({ error: true, loading: false, value: " " })
+                    this.setState({ error: true, loading: false, value: "" })
                 }
                 console.log("finish validation");
             }, 3000)
@@ -32,7 +33,7 @@ export class ClassState extends Component {
     render() {
         const { value, error, loading, rightValue } = this.state;
         return (
-            <div>
+            <div className="useClass">
                 <h2>Eliminate {this.props.name}</h2>
                 <p>Write down the security code please</p>
                 {(error && !loading) && (
