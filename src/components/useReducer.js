@@ -1,5 +1,10 @@
 import React from "react";
+
+import Button from './Button';
+
 import "../App.css";
+import '../styles/ReducerState.css';
+
 
 const SECURITY_CODE = "pollito";
 
@@ -21,51 +26,58 @@ export function UseReducer() {
     if (!state.deleted && !state.confirm) {
         return (
             <div className="useClass">
-                <h2 className="reducer_Title">Eliminate UseReducer</h2>
-                <p>Write down the security code please</p>
-                {(state.error && !state.loading) && <p>Error❌: codigo incorrecto</p>}
-                {state.loading && <p>App is loading</p>}
-                <input
-                    value={state.value}
-                    onChange={(e) => {
-                        // la e se envia por los payload para actualizar
-                        console.log(e.target.value)
-                        dispatch({ type: actionTypes.write, payload: e.target.value })
-                    }}
-                    placeholder='Security code'
-                />
-                <button
-                    onClick={() => {
-                        dispatch({ type: actionTypes.check })
-                    }}>
-                    Check out
-                </button>
+                <h3>UseReducer</h3>
+                <div className="reducer_state__view">
+                    <h2 className="reducer_Title">Eliminate UseReducer</h2>
+                    <p>Write down the security code please</p>
+                    {(state.error && !state.loading) && <p>Error❌: codigo incorrecto</p>}
+                    {state.loading && <p>App is loading</p>}
+                    <input
+                        value={state.value}
+                        onChange={(e) => {
+                            // la e se envia por los payload para actualizar
+                            console.log(e.target.value)
+                            dispatch({ type: actionTypes.write, payload: e.target.value })
+                        }}
+                        placeholder='Security code'
+                    />
+                    <Button
+                        style='btn_create' placeholder="Create"
+                        onClick={() => {
+                            dispatch({ type: actionTypes.check })
+                        }}
+                    />
+                </div>
             </div>
         );
     } else if (!!state.confirm && !state.deleted) {
         return (
             <div className="useClass">
-                <p>Please Confirm. Are you sure to remove your code?</p>
-                <br />
-                <button onClick={() => {
-                    dispatch({ type: actionTypes.deleted })
-                }}>delete</button>
-                <button
-                    onClick={() => {
-                        dispatch({ type: actionTypes.reset })
-                    }}>go back</button>
+                <div className="reducer_state__view">
+                    <p>Please Confirm. Are you sure to remove your code?</p>
+                    <br />
+                    <button onClick={() => {
+                        dispatch({ type: actionTypes.deleted })
+                    }}>delete</button>
+                    <button
+                        onClick={() => {
+                            dispatch({ type: actionTypes.reset })
+                        }}>go back</button>
+                </div>
             </div>
         );
     }
     else {
         return (
             <div className="useClass">
-                <p>Code deleted successfully</p>
-                <br />
-                <button onClick={() => {
-                    dispatch({ type: "RESET" })
-                }
-                }>Reset</button>
+                <div className="reducer_state__view">
+                    <p>Code deleted successfully</p>
+                    <br />
+                    <button onClick={() => {
+                        dispatch({ type: "RESET" })
+                    }
+                    }>Reset</button>
+                </div>
             </div>
         );
     }

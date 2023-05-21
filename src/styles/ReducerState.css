@@ -1,0 +1,24 @@
+.reducer_state__view {
+    background-color: rgb(8, 8, 8);
+    border-radius: 3%;
+    border: solid .9px #444;
+    margin: 3%;
+    padding: 2%;
+    box-sizing: border-box;
+    box-shadow: 2px 9px 9px 3px rgb(22, 205, 92);
+}
+
+input {
+    margin-top: 4%;
+    border-radius: 2%;
+    width: 90%;
+    height: 20px;
+    box-shadow: 5px 8px 4px 0 rgb(2, 7, 44);
+}
+
+.btn_create {
+    background-color: rgb(2, 7, 44);
+    color: aliceblue;
+    margin: 5%;
+    padding: 3%;
+}

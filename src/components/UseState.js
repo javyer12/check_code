@@ -1,17 +1,35 @@
 import React, { useState } from "react";
-import '../App.css';
+import { useForm } from "react-hook-form";
 
+import '../App.css';
+import '../styles/MainState.css';
+
+// states components
+import RecoveryView from '../States/UseState/RecoveryView';
+import DeleteView from '../States/UseState/DeleteView';
+import ConfirmDeleteView from "../States/UseState/ConfirmDeleteView";
+import CreateCodeView from "../States/UseState/CreateCodeView";
 
 export function UseState() {
+    const { register, handleSubmit, formState: { errors } } = useForm();
 
-    // estado independiente
     const [ SECURITY_CODE, setSECURITY_CODE ] = useState("");
-    const [ codeSaved, setCodeSaved ] = useState(false);
+    const [ recoveryCode, setRecoveryCode ] = useState(false);
     const [ value, setValue ] = React.useState("");
     const [ error, setError ] = React.useState(false);
     const [ loading, setLoading ] = React.useState(false);
     const [ confirm, setConfirm ] = React.useState(false);
     const [ deleted, setDeleted ] = React.useState(false);
+
+    const token = localStorage.getItem("useStateCode") ? true : false;
+
+    const onSubmit = data => {
+        localStorage.setItem("useStateCode", data.stateCode);
+        localStorage.setItem("useStateRecoveryCode", data.stateCodeDescription);
+        setSECURITY_CODE(data.stateCode);
+        setValue("")
+        setRecoveryCode(true);
+    };
 
     const onConfirm = () => {
         setError(false);
@@ -22,24 +40,27 @@ export function UseState() {
         setValue("");
     }
     const handleCode = (codeValue) => {
-        // setState({ ...state, value: e.target.value })
         setValue(codeValue);
-    }
-    const handleCreateCode = (codeValue) => {
-        // setState({ ...state, value: e.target.value })
-        setSECURITY_CODE(codeValue);
     }
     const handleReset = () => {
         setDeleted(false)
         setConfirm(false)
         setValue("")
-        setCodeSaved(false)
+        setSECURITY_CODE("");
     }
-
+    const handleRemove = () => {
+        localStorage.removeItem("useStateCode");
+        localStorage.removeItem("useStateRecoveryCode");
+        setDeleted(true)
+        setValue("")
+        setSECURITY_CODE("");
+        window.location.reload()
+    }
     React.useEffect(() => {
         if (loading) {
+            let code = localStorage.getItem("useStateCode");
             setTimeout(() => {
-                if (value !== SECURITY_CODE) {
+                if (value !== code) {
                     onError()
                 } else {
                     onConfirm()
@@ -49,68 +70,34 @@ export function UseState() {
         }
     }, [ loading, value, SECURITY_CODE ]);
 
-    if (!codeSaved) {
+    console.log(recoveryCode)
+    if (SECURITY_CODE === "" && !token) {
         return (
-            <div className="useState">
-                <h2>Create Code</h2>
-                <p>Create your security code please</p>
-                <input
-                    value={SECURITY_CODE}
-                    onChange={(e) => {
-                        handleCreateCode(e.target.value)
-                    }}
-                    placeholder='Security code'
-                />
-                <button
-                    onClick={() => {
-                        setCodeSaved(true)
-                    }}>
-                    Create
-                </button>
-            </div>
+            <>
+                <CreateCodeView handleSubmit={handleSubmit} onSubmit={onSubmit} register={register} errors={errors} />
+            </>
         )
     }
-    if (!deleted && !confirm) {
+    if (!deleted && !confirm && token) {
         return (
-            <div className="useState">
-                <h2>Eliminate UseState</h2>
-                <p>Write down the security code please</p>
-                {(error && !loading) && <p>Error❌: codigo incorrecto</p>}
-                {loading && <p>App is loading</p>}
-                <input
-                    value={value}
-                    onChange={(e) => {
-                        handleCode(e.target.value)
-                        console.log(e.target.value)
-                    }}
-                    placeholder='Security code'
-                />
-                <button
-                    onClick={() => {
-                        // setState({ ...state, loading: true })
-                        setLoading(true);
-                    }}>
-                    Check out
-                </button>
-            </div>
+            <>
+                <DeleteView error={error} loading={loading} deleted={deleted} setDeleted={setDeleted} value={value} handleCode={handleCode} setLoading={setLoading} setRecoveryCode={setRecoveryCode} />
+            </>
         );
-    } else if (!!confirm && !deleted) {
+    }
+    else if (!!confirm && !deleted) {
         return (
-            <div className="useState">
-                <p>Please Confirm. <br />Are you sure to remove your code?</p>
-                <br />
-                <button
-                    onClick={() => {
-                        setDeleted(true)
-                        setSECURITY_CODE("")
-                    }}>delete</button>
-                <button
-                    onClick={() => {
-                        setConfirm(false)
-                        setValue("")
-                    }}>go back</button>
-            </div>
+            <>
+                <ConfirmDeleteView handleRemove={handleRemove} setConfirm={setConfirm} setValue={setValue} />
+            </>
         );
+    }
+    else if (recoveryCode) {
+        return (
+            <>
+                <RecoveryView deleted={deleted} setDeleted={setDeleted} setRecoveryCode={setRecoveryCode} />
+            </>
+        )
     }
     else {
         return (
