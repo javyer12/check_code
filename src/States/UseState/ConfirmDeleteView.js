@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function ConfirmDeleteView({ handleRemove, setConfirm, setValue }) {
     return (
-        <div className="useState">
+        <div className='animated_class' >
             <div className="state_view">
                 <p>Please Confirm. <br />Are you sure to remove your code?</p>
                 <br />

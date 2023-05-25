@@ -14,7 +14,7 @@ export default function RecoveryView({ deleted, setRecoveryCode, setDeleted }) {
         setRecoveryCode(false)
     };
     return (
-        <div className="useState">
+        <div className='animated_class'>
             <h3>UseState!</h3>
             <div className="state_view">
                 <h2>Recovery Code</h2>

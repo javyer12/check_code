@@ -3,7 +3,7 @@ import Spin from '../../components/Spin';
 
 export default function DeleteView({ error, loading, deleted, setDeleted, value, handleCode, setLoading, setRecoveryCode }) {
     return (
-        <div className="useState">
+        <div className='animated_class state_view' >
             <div >
                 <h2>Eliminate UseState</h2>
                 <p>Write down the security code please</p>

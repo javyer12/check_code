@@ -6,7 +6,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  background-color: rgb(8, 15, 42);
+  /* background-color: rgb(8, 15, 42); */
+  background-image: url('https://cdn.mos.cms.futurecdn.net/tW2sFPx3Uu6caULTtrsD8Y.jpg');
+
   color: aliceblue
 }
 

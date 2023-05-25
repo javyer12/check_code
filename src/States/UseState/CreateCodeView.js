@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function CreateCodeView({ handleSubmit, onSubmit, register, errors }) {
     return (
-        <div className="useState">
+        <div className='animated_class'>
             <h3>UseState!</h3>
             <div className="state_view">
                 <h2>Create Code</h2>

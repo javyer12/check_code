@@ -6,6 +6,9 @@
     padding: 2%;
     box-sizing: border-box;
     box-shadow: 2px 9px 9px 3px rgb(22, 205, 92);
+    background-color: rgba(8, 8, 8, 0.5);
+    backdrop-filter: blur(5.7px);
+    -webkit-backdrop-filter: blur(5.7px);
 }
 
 input {

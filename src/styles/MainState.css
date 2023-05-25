@@ -1,24 +1,29 @@
 .state_view {
-    background-color: rgb(8, 8, 8);
+    /* background-color: rgb(8, 8, 8); */
     border-radius: 3%;
     border: solid .9px #444;
     margin: 3%;
     padding: 2%;
     box-sizing: border-box;
-    box-shadow: 2px 9px 9px 3px blue;
+    box-shadow: 2px 9px 9px 2px blue;
+    background-color: rgba(8, 8, 8, 0.5);
+    backdrop-filter: blur(4.7px);
+    -webkit-backdrop-filter: blur(5.7px);
 }
 
 input {
+    border-radius: 5px !important;
     margin-top: 4%;
     border-radius: 2%;
     width: 90%;
-    height: 20px;
+    height: 20px !important;
     box-shadow: 5px 8px 4px 0 rgb(2, 7, 44);
 }
 
 .btn_create {
     background-color: rgb(2, 7, 44);
-    color: aliceblue;
+    color: rgb(255, 255, 255);
     margin: 5%;
     padding: 3%;
+    border-radius: 5px;
 }

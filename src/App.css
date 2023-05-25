@@ -7,11 +7,13 @@
 
 .useState,
 .useClass {
-  border-right: solid 1px rgb(169, 168, 166);
+  /* border-right: solid 1px rgb(169, 168, 166); */
   padding-top: 30vh;
   width: 33vw;
-  animation: backwards 2s App-logo-spin;
+}
 
+.animated_class {
+  animation: backwards 2s App-logo-spin;
 }
 
 .useState h2 {

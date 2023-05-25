@@ -70,33 +70,32 @@ export function UseState() {
         }
     }, [ loading, value, SECURITY_CODE ]);
 
-    console.log(recoveryCode)
     if (SECURITY_CODE === "" && !token) {
         return (
-            <>
+            <div className="useState">
                 <CreateCodeView handleSubmit={handleSubmit} onSubmit={onSubmit} register={register} errors={errors} />
-            </>
+            </div>
         )
     }
     if (!deleted && !confirm && token) {
         return (
-            <>
+            <div className="useState">
                 <DeleteView error={error} loading={loading} deleted={deleted} setDeleted={setDeleted} value={value} handleCode={handleCode} setLoading={setLoading} setRecoveryCode={setRecoveryCode} />
-            </>
+            </div>
         );
     }
     else if (!!confirm && !deleted) {
         return (
-            <>
+            <div className="useState">
                 <ConfirmDeleteView handleRemove={handleRemove} setConfirm={setConfirm} setValue={setValue} />
-            </>
+            </div>
         );
     }
     else if (recoveryCode) {
         return (
-            <>
+            <div className="useState">
                 <RecoveryView deleted={deleted} setDeleted={setDeleted} setRecoveryCode={setRecoveryCode} />
-            </>
+            </div>
         )
     }
     else {
