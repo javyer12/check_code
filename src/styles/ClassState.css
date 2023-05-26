@@ -10,29 +10,3 @@
     backdrop-filter: blur(5.7px);
     -webkit-backdrop-filter: blur(5.7px);
 }
-
-input {
-    margin-top: 4%;
-    border-radius: 2%;
-    width: 90%;
-    height: 30px !important;
-    box-shadow: 5px 8px 4px 0 rgb(2, 7, 44);
-    background-color: transparent;
-    color: aliceblue !important;
-}
-
-/* input:invalid {
-    border: 2px dashed red;
-    background-color: rgb(188, 9, 9);
-} */
-/* 
-input:invalid:focus {
-    background-image: linear-gradient(rgb(232, 230, 231), rgb(231, 231, 231));
-} */
-
-.btn_create {
-    background-color: rgb(2, 7, 44);
-    color: aliceblue;
-    margin: 5%;
-    padding: 3%;
-}

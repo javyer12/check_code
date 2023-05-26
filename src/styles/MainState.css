@@ -10,20 +10,3 @@
     backdrop-filter: blur(4.7px);
     -webkit-backdrop-filter: blur(5.7px);
 }
-
-input {
-    border-radius: 5px !important;
-    margin-top: 4%;
-    border-radius: 2%;
-    width: 90%;
-    height: 20px !important;
-    box-shadow: 5px 8px 4px 0 rgb(2, 7, 44);
-}
-
-.btn_create {
-    background-color: rgb(2, 7, 44);
-    color: rgb(255, 255, 255);
-    margin: 5%;
-    padding: 3%;
-    border-radius: 5px;
-}
