@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Loading from '../components/Loading';
-import CreateCodeView from '../States/UseClass/CreateCodeView';
+
 
 import '../App.css';
 import '../styles/ClassState.css';

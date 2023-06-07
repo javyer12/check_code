@@ -28,7 +28,7 @@ export default function CreateCodeView({ handleSubmit, onSubmit, register, error
 
                     <button className='btn_create' placeholder="Create" >Create</button>
                     <br />
-                    {errors.stateCode || errors.stateCodeDescription && <span>This field is required</span>}
+                    {(errors.stateCode || errors.stateCodeDescription) && <span>This field is required</span>}
                 </form>
             </div>
         </div>
